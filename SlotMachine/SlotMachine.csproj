@@ -66,7 +66,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\main.css" />
+    <Content Include="img\A_Vector_Art_Slot_Machine_Revised.png" />
+    <Content Include="img\Spin-Blue.png" />
+    <Content Include="img\Spin.png" />
     <Content Include="index.html" />
+    <Content Include="js\createjs-2013.12.12.min.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\main.js" />
     <Content Include="Web.config" />
@@ -74,9 +78,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="img\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

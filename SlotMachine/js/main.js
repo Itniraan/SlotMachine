@@ -1,4 +1,13 @@
 ﻿/// <reference path="jquery.js" />
+/// <reference path="http://code.createjs.com/createjs-2013.12.12.min.js" />
+/// <reference path="createjs-2013.12.12.min.js" />
+
+var stage;
+var game;
+var slotMachineImage;
+var spinButton;
+var spinButtonHover;
+
 var playerMoney = 1000;
 var winnings = 0;
 var jackpot = 5000;
@@ -204,7 +213,7 @@ function determineWinnings()
 }
 
 /* When the player clicks the spin button the game kicks off */
-$("#spinButton").click(function () {
+function gameStart () {
     playerBet = $("div#betEntry>input").val();
 
     if (playerMoney == 0)
@@ -232,4 +241,57 @@ $("#spinButton").click(function () {
         alert("Please enter a valid bet amount");
     }
     
-});
+};
+
+function drawCircle() {
+    var stage = new createjs.Stage("mainCanvas");
+    var circle = new createjs.Shape();
+    circle.graphics.beginFill("red").drawCircle(0, 0, 50);
+    circle.x = 100;
+    circle.y = 100;
+    stage.addChild(circle);
+    stage.update();
+};
+
+function init() {
+    //alert("Loaded");
+    stage = new createjs.Stage(document.getElementById("mainCanvas"));
+    stage.enableMouseOver(20);
+    createjs.Ticker.addEventListener("tick", handleTick);
+    createjs.Ticker.setFPS(60);
+    drawSlotMachine();
+};
+
+function handleTick() {
+    stage.update();
+};
+
+function drawSlotMachine() {
+    game = new createjs.Container();
+    slotMachineImage = new createjs.Bitmap("img/A_Vector_Art_Slot_Machine_Revised.png");
+    game.addChild(slotMachineImage);
+
+    spinButton = new createjs.Bitmap("img/Spin.png");
+    spinButtonHover = new createjs.Bitmap("img/Spin-Blue.png");
+    spinButton.x = 430;
+    spinButton.y = 390;
+    spinButtonHover.x = 430;
+    spinButtonHover.y = 390;
+    spinButtonHover.visible = false;
+    spinButton.addEventListener("mouseover", function (event) {
+        spinButton.visible = false;
+        spinButtonHover.visible = true;
+    });
+    spinButtonHover.addEventListener("mouseout", function (event) {
+        spinButton.visible = true;
+        spinButtonHover.visible = false;
+    });
+    spinButtonHover.addEventListener("click", function (event) {
+        gameStart();
+    })
+    game.addChild(spinButton);
+    game.addChild(spinButtonHover);
+
+
+    stage.addChild(game);
+}
