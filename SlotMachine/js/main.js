@@ -11,6 +11,12 @@ var winText;
 var reel1;
 var reel2;
 var reel3;
+var jackpotText;
+var winningsText;
+var playerMoneyText;
+var winNumberText;
+var lossNumberText;
+var black_box;
 
 var playerMoney = 1000;
 var winnings = 0;
@@ -93,6 +99,28 @@ function checkJackPot() {
     if (jackPotTry == jackPotWin) {
         alert("You Won the $" + jackpot + " Jackpot!!");
         playerMoney += jackpot;
+        winnings += jackpot;
+
+        black_box = new createjs.Bitmap("img/black_box.png");
+        black_box.x = 79;
+        black_box.y = 320;
+        game.addChild(black_box);
+
+        winningsText = new createjs.Text(winnings, "13px Arial", "White");
+        winningsText.x = 105;
+        winningsText.y = 330;
+        game.addChild(winningsText);
+
+        black_box = new createjs.Bitmap("img/black_box.png");
+        black_box.x = 442;
+        black_box.y = 323;
+        game.addChild(black_box);
+
+        playerMoneyText = new createjs.Text(playerMoney, "13px Arial", "White");
+        playerMoneyText.x = 462;
+        playerMoneyText.y = 330;
+        game.addChild(playerMoneyText);
+
         jackpot = 1000;
     }
 }
@@ -100,6 +128,27 @@ function checkJackPot() {
 /* Utility function to show a win message and increase player money */
 function showWinMessage() {
     playerMoney += winnings;
+
+    black_box = new createjs.Bitmap("img/black_box.png");
+    black_box.x = 79;
+    black_box.y = 320;
+    game.addChild(black_box);
+
+    winningsText = new createjs.Text(winnings, "13px Arial", "White");
+    winningsText.x = 105;
+    winningsText.y = 330;
+    game.addChild(winningsText);
+
+    black_box = new createjs.Bitmap("img/black_box.png");
+    black_box.x = 442;
+    black_box.y = 323;
+    game.addChild(black_box);
+
+    playerMoneyText = new createjs.Text(playerMoney, "13px Arial", "White");
+    playerMoneyText.x = 462;
+    playerMoneyText.y = 330;
+    game.addChild(playerMoneyText);
+
     $("div#winOrLose>p").text("You Won: $" + winnings);
     resetFruitTally();
     checkJackPot();
@@ -108,6 +157,38 @@ function showWinMessage() {
 /* Utility function to show a loss message and reduce player money */
 function showLossMessage() {
     playerMoney -= playerBet;
+    jackpot += parseInt(playerBet);
+    winnings = 0;
+    black_box = new createjs.Bitmap("img/black_box.png");
+    black_box.x = 250;
+    black_box.y = 320;
+    game.addChild(black_box);
+
+    jackpotText = new createjs.Text(jackpot, "13px Arial", "White");
+    jackpotText.x = 270;
+    jackpotText.y = 330;
+    game.addChild(jackpotText);
+
+    black_box = new createjs.Bitmap("img/black_box.png");
+    black_box.x = 79;
+    black_box.y = 320;
+    game.addChild(black_box);
+
+    winningsText = new createjs.Text(winnings, "13px Arial", "White");
+    winningsText.x = 105;
+    winningsText.y = 330;
+    game.addChild(winningsText);
+
+    black_box = new createjs.Bitmap("img/black_box.png");
+    black_box.x = 442;
+    black_box.y = 323;
+    game.addChild(black_box);
+
+    playerMoneyText = new createjs.Text(playerMoney, "13px Arial", "White");
+    playerMoneyText.x = 462;
+    playerMoneyText.y = 330;
+    game.addChild(playerMoneyText);
+
     $("div#winOrLose>p").text("You Lost!");
     resetFruitTally();
 }
@@ -327,6 +408,21 @@ function drawSlotMachine() {
     reel3.x = 355;
     reel3.y = 165;
     game.addChild(reel3);
+
+    jackpotText = new createjs.Text(jackpot, "13px Arial", "White");
+    jackpotText.x = 270;
+    jackpotText.y = 330;
+    game.addChild(jackpotText);
+
+    winningsText = new createjs.Text(winnings, "13px Arial", "White");
+    winningsText.x = 105;
+    winningsText.y = 330;
+    game.addChild(winningsText);
+
+    playerMoneyText = new createjs.Text(playerMoney, "13px Arial", "White");
+    playerMoneyText.x = 462;
+    playerMoneyText.y = 330;
+    game.addChild(playerMoneyText);
 
 
 
