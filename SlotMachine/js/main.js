@@ -7,6 +7,7 @@ var game;
 var slotMachineImage;
 var spinButton;
 var spinButtonHover;
+var winText;
 
 var playerMoney = 1000;
 var winnings = 0;
@@ -243,18 +244,8 @@ function gameStart () {
     
 };
 
-function drawCircle() {
-    var stage = new createjs.Stage("mainCanvas");
-    var circle = new createjs.Shape();
-    circle.graphics.beginFill("red").drawCircle(0, 0, 50);
-    circle.x = 100;
-    circle.y = 100;
-    stage.addChild(circle);
-    stage.update();
-};
-
 function init() {
-    //alert("Loaded");
+    //alert("Game Loaded");
     stage = new createjs.Stage(document.getElementById("mainCanvas"));
     stage.enableMouseOver(20);
     createjs.Ticker.addEventListener("tick", handleTick);

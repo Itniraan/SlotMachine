@@ -66,7 +66,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\main.css" />
+    <Content Include="img\7.png" />
     <Content Include="img\A_Vector_Art_Slot_Machine_Revised.png" />
+    <Content Include="img\bananas.png" />
+    <Content Include="img\bar.png" />
+    <Content Include="img\bells.png" />
+    <Content Include="img\cherries.png" />
+    <Content Include="img\grapes.png" />
+    <Content Include="img\oranges.png" />
     <Content Include="img\Spin-Blue.png" />
     <Content Include="img\Spin.png" />
     <Content Include="index.html" />

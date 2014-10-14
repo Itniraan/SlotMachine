@@ -7,8 +7,9 @@
     <link href="css/main.css" rel="stylesheet" />
 </head>
 <body onload="init()">
-    <div>
         <h1>Slot Machine</h1>
+        <canvas id="mainCanvas" width="628" height="471"></canvas>
+    <div id="main">
         <div>
             <h2>Player Statistics</h2>
             <hr />
@@ -22,30 +23,23 @@
             </ul>
             <hr />
         </div>
-
         <div id="betEntry">
-
             <p>Place Your Bet Here</p>
             <input id="playerBet" name="points" value="10">
             <hr />
         </div>
 
-
-        <button id="spinButton">Spin!</button>
-    </div>
-
-    <div id="result">
-        <h2>Spin Result</h2>
+        <div id="result">
+            <h2>Spin Result</h2>
+            <hr />
+            <p></p>
+        </div>
         <hr />
-        <p></p>
+        <div id="winOrLose">
+            <p></p>
+        </div>
     </div>
-    <hr />
-    <div id="winOrLose">
-        <p></p>
-    </div>
-    <canvas id="mainCanvas" width="628" height="471">
-
-    </canvas>
+    
 
     <!-- JavaScript Section -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

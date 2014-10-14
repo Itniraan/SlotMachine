@@ -4,4 +4,6 @@
     margin: 5px;
 }
 
-
+div#main {
+    float: right;
+}
