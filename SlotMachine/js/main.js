@@ -8,6 +8,9 @@ var slotMachineImage;
 var spinButton;
 var spinButtonHover;
 var winText;
+var reel1;
+var reel2;
+var reel3;
 
 var playerMoney = 1000;
 var winnings = 0;
@@ -27,6 +30,23 @@ var bars = 0;
 var bells = 0;
 var sevens = 0;
 var blanks = 0;
+
+function loadQueue() {
+    var queue = new createjs.LoadQueue(true);
+
+    queue.loadFile({ id: "slotMachineImage", src: "img/A_Vector_Art_Slot_Machine_Revised.png" });
+    queue.loadFile({ id: "bananaImage", src: "img/bananas.png" });
+    queue.loadFile({ id: "grapesImage", src: "img/grapes.png" });
+    queue.loadFile({ id: "barsImage", src: "img/bar.png" });
+    queue.loadFile({ id: "bellsImage", src: "img/bells.png" });
+    queue.loadFile({ id: "cherriesImage", src: "img/cherries.png" });
+    queue.loadFile({ id: "orangesImage", src: "img/oranges.png" });
+    queue.loadFile({ id: "sevensImage", src: "img/7.png" });
+    queue.loadFile({ id: "spinHoverButtonImage", src: "img/Spin-Blue.png" });
+    queue.loadFile({ id: "spinButtonImage", src: "img/Spin.png" });
+
+    queue.on("complete", init(), this);
+}
 
 /* Utility function to show Player Stats */
 function showPlayerStats()
@@ -113,35 +133,35 @@ function Reels() {
         outCome[spin] = Math.floor((Math.random() * 65) + 1);
         switch (outCome[spin]) {
             case checkRange(outCome[spin], 1, 27):  // 41.5% probability
-                betLine[spin] = "blank";
+                betLine[spin] = "img/blank.png";
                 blanks++;
                 break;
             case checkRange(outCome[spin], 28, 37): // 15.4% probability
-                betLine[spin] = "Grapes";
+                betLine[spin] = "img/grapes2.png";
                 grapes++;
                 break;
             case checkRange(outCome[spin], 38, 46): // 13.8% probability
-                betLine[spin] = "Banana";
+                betLine[spin] = "img/bananas2.png";
                 bananas++;
                 break;
             case checkRange(outCome[spin], 47, 54): // 12.3% probability
-                betLine[spin] = "Orange";
+                betLine[spin] = "img/oranges2.png";
                 oranges++;
                 break;
             case checkRange(outCome[spin], 55, 59): //  7.7% probability
-                betLine[spin] = "Cherry";
+                betLine[spin] = "img/cherries2.png";
                 cherries++;
                 break;
             case checkRange(outCome[spin], 60, 62): //  4.6% probability
-                betLine[spin] = "Bar";
+                betLine[spin] = "img/bar2.png";
                 bars++;
                 break;
             case checkRange(outCome[spin], 63, 64): //  3.1% probability
-                betLine[spin] = "Bell";
+                betLine[spin] = "img/bells2.png";
                 bells++;
                 break;
             case checkRange(outCome[spin], 65, 65): //  1.5% probability
-                betLine[spin] = "Seven";
+                betLine[spin] = "img/7-2.png";
                 sevens++;
                 break;
         }
@@ -232,8 +252,20 @@ function gameStart () {
     }
     else if (playerBet <= playerMoney) {
         spinResult = Reels();
-        fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
-        $("div#result>p").text(fruits);
+        //fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
+        //$("div#result>p").text(fruits);
+        reel1 = new createjs.Bitmap(spinResult[0]);
+        reel1.x = 130;
+        reel1.y = 165;
+        game.addChild(reel1);
+        reel2 = new createjs.Bitmap(spinResult[1]);
+        reel2.x = 243;
+        reel2.y = 165;
+        game.addChild(reel2);
+        reel3 = new createjs.Bitmap(spinResult[2]);
+        reel3.x = 355;
+        reel3.y = 165;
+        game.addChild(reel3);
         determineWinnings();
         turn++;
         showPlayerStats();
@@ -282,6 +314,20 @@ function drawSlotMachine() {
     })
     game.addChild(spinButton);
     game.addChild(spinButtonHover);
+
+    reel1 = new createjs.Bitmap("img/spin-reel.png");
+    reel1.x = 130;
+    reel1.y = 165;
+    game.addChild(reel1);
+    reel2 = new createjs.Bitmap("img/spin-reel.png");
+    reel2.x = 243;
+    reel2.y = 165;
+    game.addChild(reel2);
+    reel3 = new createjs.Bitmap("img/spin-reel.png");
+    reel3.x = 355;
+    reel3.y = 165;
+    game.addChild(reel3);
+
 
 
     stage.addChild(game);
