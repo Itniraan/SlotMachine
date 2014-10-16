@@ -165,7 +165,7 @@ function checkJackPot() {
         playerMoney += jackpot;
         winnings += jackpot;
 
-        black_box = new createjs.Bitmap("img/black_box.png");
+        /**black_box = new createjs.Bitmap("img/black_box.png");
         black_box.x = 79;
         black_box.y = 333;
         game.addChild(black_box);
@@ -184,65 +184,19 @@ function checkJackPot() {
         playerMoneyText.x = 462;
         playerMoneyText.y = 343;
         game.addChild(playerMoneyText);
-
+        */
 
         jackpot = 1000;
     }
 
-    black_box = new createjs.Bitmap("img/black_box_small.png");
-    black_box.x = 61;
-    black_box.y = 169;
-    game.addChild(black_box);
-
-    turnText = new createjs.Text(turn, "13px Arial", "White");
-    turnText.x = 73;
-    turnText.y = 175;
-    game.addChild(turnText);
-
-    black_box = new createjs.Bitmap("img/black_box_med.png");
-    black_box.x = 470;
-    black_box.y = 274;
-    game.addChild(black_box);
-
-    winRatioText = new createjs.Text((winRatio * 100).toFixed(2) + "%", "13px Arial", "White");
-    winRatioText.x = 479;
-    winRatioText.y = 280;
-    game.addChild(winRatioText);
+    updateStats();
 }
 
 /* Utility function to show a win message and increase player money */
 function showWinMessage() {
     playerMoney += winnings;
 
-    black_box = new createjs.Bitmap("img/black_box.png");
-    black_box.x = 79;
-    black_box.y = 333;
-    game.addChild(black_box);
-
-    winningsText = new createjs.Text(winnings, "13px Arial", "White");
-    winningsText.x = 105;
-    winningsText.y = 343;
-    game.addChild(winningsText);
-
-    black_box = new createjs.Bitmap("img/black_box.png");
-    black_box.x = 442;
-    black_box.y = 336;
-    game.addChild(black_box);
-
-    playerMoneyText = new createjs.Text(playerMoney, "13px Arial", "White");
-    playerMoneyText.x = 462;
-    playerMoneyText.y = 344;
-    game.addChild(playerMoneyText);
-
-    black_box = new createjs.Bitmap("img/black_box_small.png");
-    black_box.x = 484;
-    black_box.y = 168;
-    game.addChild(black_box);
-
-    winNumberText = new createjs.Text(winNumber, "13px Arial", "White");
-    winNumberText.x = 493;
-    winNumberText.y = 175;
-    game.addChild(winNumberText);
+    updateStats();
 
     $("div#winOrLose>p").text("You Won: $" + winnings);
     resetFruitTally();
@@ -254,65 +208,8 @@ function showLossMessage() {
     playerMoney -= playerBet;
     jackpot += parseInt(playerBet);
     winnings = 0;
-    black_box = new createjs.Bitmap("img/black_box.png");
-    black_box.x = 250;
-    black_box.y = 333;
-    game.addChild(black_box);
 
-    jackpotText = new createjs.Text(jackpot, "13px Arial", "White");
-    jackpotText.x = 270;
-    jackpotText.y = 343;
-    game.addChild(jackpotText);
-
-    black_box = new createjs.Bitmap("img/black_box.png");
-    black_box.x = 79;
-    black_box.y = 333;
-    game.addChild(black_box);
-
-    winningsText = new createjs.Text(winnings, "13px Arial", "White");
-    winningsText.x = 105;
-    winningsText.y = 343;
-    game.addChild(winningsText);
-
-    black_box = new createjs.Bitmap("img/black_box.png");
-    black_box.x = 442;
-    black_box.y = 336;
-    game.addChild(black_box);
-
-    playerMoneyText = new createjs.Text(playerMoney, "13px Arial", "White");
-    playerMoneyText.x = 462;
-    playerMoneyText.y = 343;
-    game.addChild(playerMoneyText);
-
-    black_box = new createjs.Bitmap("img/black_box_small.png");
-    black_box.x = 484;
-    black_box.y = 220;
-    game.addChild(black_box);
-
-    lossNumberText = new createjs.Text(lossNumber, "13px Arial", "White");
-    lossNumberText.x = 493;
-    lossNumberText.y = 229;
-    game.addChild(lossNumberText);
-
-    black_box = new createjs.Bitmap("img/black_box_small.png");
-    black_box.x = 61;
-    black_box.y = 169;
-    game.addChild(black_box);
-
-    turnText = new createjs.Text(turn, "13px Arial", "White");
-    turnText.x = 73;
-    turnText.y = 175;
-    game.addChild(turnText);
-
-    black_box = new createjs.Bitmap("img/black_box_med.png");
-    black_box.x = 470;
-    black_box.y = 274;
-    game.addChild(black_box);
-
-    winRatioText = new createjs.Text((winRatio * 100).toFixed(2) + "%", "13px Arial", "White");
-    winRatioText.x = 479;
-    winRatioText.y = 280;
-    game.addChild(winRatioText);
+    updateStats();
 
     $("div#winOrLose>p").text("You Lost!");
     resetFruitTally();
@@ -482,6 +379,69 @@ function gameStart () {
     
 };
 
+function updateStats() {
+    black_box = new createjs.Bitmap("img/black_box.png");
+    black_box.x = 250;
+    black_box.y = 333;
+    game.addChild(black_box);
+
+    jackpotText = new createjs.Text(jackpot, "13px Arial", "White");
+    jackpotText.x = 270;
+    jackpotText.y = 343;
+    game.addChild(jackpotText);
+
+    black_box = new createjs.Bitmap("img/black_box.png");
+    black_box.x = 79;
+    black_box.y = 333;
+    game.addChild(black_box);
+
+    winningsText = new createjs.Text(winnings, "13px Arial", "White");
+    winningsText.x = 105;
+    winningsText.y = 343;
+    game.addChild(winningsText);
+
+    black_box = new createjs.Bitmap("img/black_box.png");
+    black_box.x = 442;
+    black_box.y = 336;
+    game.addChild(black_box);
+
+    playerMoneyText = new createjs.Text(playerMoney, "13px Arial", "White");
+    playerMoneyText.x = 462;
+    playerMoneyText.y = 343;
+    game.addChild(playerMoneyText);
+
+    black_box = new createjs.Bitmap("img/black_box_small.png");
+    black_box.x = 484;
+    black_box.y = 220;
+    game.addChild(black_box);
+
+    lossNumberText = new createjs.Text(lossNumber, "13px Arial", "White");
+    lossNumberText.x = 493;
+    lossNumberText.y = 229;
+    game.addChild(lossNumberText);
+
+    black_box = new createjs.Bitmap("img/black_box_small.png");
+    black_box.x = 61;
+    black_box.y = 169;
+    game.addChild(black_box);
+
+    turnText = new createjs.Text(turn, "13px Arial", "White");
+    turnText.x = 73;
+    turnText.y = 175;
+    game.addChild(turnText);
+
+    black_box = new createjs.Bitmap("img/black_box_med.png");
+    black_box.x = 470;
+    black_box.y = 274;
+    game.addChild(black_box);
+
+    winRatioText = new createjs.Text((winRatio * 100).toFixed(2) + "%", "13px Arial", "White");
+    winRatioText.x = 479;
+    winRatioText.y = 280;
+    game.addChild(winRatioText);
+
+};
+
 function init() {
     //alert("Game Loaded");
     stage = new createjs.Stage(document.getElementById("mainCanvas"));
@@ -549,40 +509,20 @@ function drawSlotMachine() {
     playerMoneyText.y = 343;
     game.addChild(playerMoneyText);
 
-    black_box = new createjs.Bitmap("img/black_box_small.png");
-    black_box.x = 484;
-    black_box.y = 168;
-    game.addChild(black_box);
-
     winNumberText = new createjs.Text(winNumber, "13px Arial", "White");
     winNumberText.x = 493;
     winNumberText.y = 175;
     game.addChild(winNumberText);
-
-    black_box = new createjs.Bitmap("img/black_box_small.png");
-    black_box.x = 484;
-    black_box.y = 220;
-    game.addChild(black_box);
 
     lossNumberText = new createjs.Text(lossNumber, "13px Arial", "White");
     lossNumberText.x = 493;
     lossNumberText.y = 229;
     game.addChild(lossNumberText);
 
-    black_box = new createjs.Bitmap("img/black_box_small.png");
-    black_box.x = 61;
-    black_box.y = 169;
-    game.addChild(black_box);
-
     turnText = new createjs.Text(turn, "13px Arial", "White");
     turnText.x = 73;
     turnText.y = 175;
     game.addChild(turnText);
-
-    black_box = new createjs.Bitmap("img/black_box_med.png");
-    black_box.x = 470;
-    black_box.y = 274;
-    game.addChild(black_box);
 
     winRatioText = new createjs.Text(winRatio + "%", "13px Arial", "White");
     winRatioText.x = 487;
