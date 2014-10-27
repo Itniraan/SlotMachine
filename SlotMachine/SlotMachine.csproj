@@ -71,9 +71,6 @@
     <Content Include="img\bananas2.png" />
     <Content Include="img\bar2.png" />
     <Content Include="img\bells2.png" />
-    <Content Include="img\black_box.png" />
-    <Content Include="img\black_box_med.png" />
-    <Content Include="img\black_box_small.png" />
     <Content Include="img\blank.png" />
     <Content Include="img\cherries2.png" />
     <Content Include="img\grapes2.png" />
