@@ -12,6 +12,7 @@ slot machine application.
 
 var stage;
 var game;
+var queue;
 var slotMachineImage;
 var spinButton;
 var spinButtonHover;
@@ -47,20 +48,24 @@ var sevens = 0;
 var blanks = 0;
 
 function loadQueue() {
-    var queue = new createjs.LoadQueue(true);
-
-    queue.loadFile({ id: "slotMachineImage", src: "img/A_Vector_Art_Slot_Machine_Revised.png" });
-    queue.loadFile({ id: "bananaImage", src: "img/bananas.png" });
-    queue.loadFile({ id: "grapesImage", src: "img/grapes.png" });
-    queue.loadFile({ id: "barsImage", src: "img/bar.png" });
-    queue.loadFile({ id: "bellsImage", src: "img/bells.png" });
-    queue.loadFile({ id: "cherriesImage", src: "img/cherries.png" });
-    queue.loadFile({ id: "orangesImage", src: "img/oranges.png" });
-    queue.loadFile({ id: "sevensImage", src: "img/7.png" });
-    queue.loadFile({ id: "spinHoverButtonImage", src: "img/Spin-Blue.png" });
-    queue.loadFile({ id: "spinButtonImage", src: "img/Spin.png" });
-
-    queue.on("complete", init(), this);
+    queue = new createjs.LoadQueue();
+    queue.installPlugin(createjs.Sound);
+    queue.addEventListener("complete", init);
+    
+    queue.loadManifest([
+        { id: "slotMachineImage", src: "img/A_Vector_Art_Slot_Machine_Revised.png" },
+        { id: "bananaImage", src: "img/bananas2.png" },
+        { id: "grapesImage", src: "img/grapes2.png" },
+        { id: "barsImage", src: "img/bar2.png" },
+        { id: "bellsImage", src: "img/bells2.png" },
+        { id: "cherriesImage", src: "img/cherries2.png" },
+        { id: "orangesImage", src: "img/oranges2.png" },
+        { id: "sevensImage", src: "img/7-2.png" },
+        { id: "blankImage", src: "img/blank.png" },
+        { id: "spinHoverButtonImage", src: "img/Spin-Blue.png" },
+        { id: "spinButtonImage", src: "img/Spin.png" },
+        { id: "spin-reel", src: "img/spin-reel.png" }
+    ]);
 }
 
 /* Utility function to show Player Stats */
@@ -203,35 +208,35 @@ function Reels() {
         outCome[spin] = Math.floor((Math.random() * 65) + 1);
         switch (outCome[spin]) {
             case checkRange(outCome[spin], 1, 27):  // 41.5% probability
-                betLine[spin] = "img/blank.png";
+                betLine[spin] = queue.getResult('blankImage');
                 blanks++;
                 break;
             case checkRange(outCome[spin], 28, 37): // 15.4% probability
-                betLine[spin] = "img/grapes2.png";
+                betLine[spin] = queue.getResult('grapesImage');
                 grapes++;
                 break;
             case checkRange(outCome[spin], 38, 46): // 13.8% probability
-                betLine[spin] = "img/bananas2.png";
+                betLine[spin] = queue.getResult('bananaImage');
                 bananas++;
                 break;
             case checkRange(outCome[spin], 47, 54): // 12.3% probability
-                betLine[spin] = "img/oranges2.png";
+                betLine[spin] = queue.getResult('orangesImage');
                 oranges++;
                 break;
             case checkRange(outCome[spin], 55, 59): //  7.7% probability
-                betLine[spin] = "img/cherries2.png";
+                betLine[spin] = queue.getResult('cherriesImage');
                 cherries++;
                 break;
             case checkRange(outCome[spin], 60, 62): //  4.6% probability
-                betLine[spin] = "img/bar2.png";
+                betLine[spin] = queue.getResult('barsImage');
                 bars++;
                 break;
             case checkRange(outCome[spin], 63, 64): //  3.1% probability
-                betLine[spin] = "img/bells2.png";
+                betLine[spin] = queue.getResult('bellsImage');
                 bells++;
                 break;
             case checkRange(outCome[spin], 65, 65): //  1.5% probability
-                betLine[spin] = "img/7-2.png";
+                betLine[spin] = queue.getResult('sevensImage');
                 sevens++;
                 break;
         }
@@ -324,6 +329,9 @@ function gameStart () {
         spinResult = Reels();
         //fruits = spinResult[0] + " - " + spinResult[1] + " - " + spinResult[2];
         //$("div#result>p").text(fruits);
+        game.removeChild(reel1);
+        game.removeChild(reel2);
+        game.removeChild(reel3);
         reel1 = new createjs.Bitmap(spinResult[0]);
         reel1.x = 130;
         reel1.y = 165;
@@ -407,11 +415,11 @@ function handleTick() {
 
 function drawSlotMachine() {
     game = new createjs.Container();
-    slotMachineImage = new createjs.Bitmap("img/A_Vector_Art_Slot_Machine_Revised.png");
+    slotMachineImage = new createjs.Bitmap(queue.getResult('slotMachineImage'));
     game.addChild(slotMachineImage);
 
-    spinButton = new createjs.Bitmap("img/Spin.png");
-    spinButtonHover = new createjs.Bitmap("img/Spin-Blue.png");
+    spinButton = new createjs.Bitmap(queue.getResult('spinButtonImage'));
+    spinButtonHover = new createjs.Bitmap(queue.getResult('spinHoverButtonImage'));
     spinButton.x = 430;
     spinButton.y = 390;
     spinButtonHover.x = 430;
@@ -431,15 +439,15 @@ function drawSlotMachine() {
     game.addChild(spinButton);
     game.addChild(spinButtonHover);
 
-    reel1 = new createjs.Bitmap("img/spin-reel.png");
+    reel1 = new createjs.Bitmap(queue.getResult('spin-reel'));
     reel1.x = 130;
     reel1.y = 165;
     game.addChild(reel1);
-    reel2 = new createjs.Bitmap("img/spin-reel.png");
+    reel2 = new createjs.Bitmap(queue.getResult('spin-reel'));
     reel2.x = 243;
     reel2.y = 165;
     game.addChild(reel2);
-    reel3 = new createjs.Bitmap("img/spin-reel.png");
+    reel3 = new createjs.Bitmap(queue.getResult('spin-reel'));
     reel3.x = 355;
     reel3.y = 165;
     game.addChild(reel3);
