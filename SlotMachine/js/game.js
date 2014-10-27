@@ -2,6 +2,14 @@
 /// <reference path="http://code.createjs.com/createjs-2013.12.12.min.js" />
 /// <reference path="createjs-2013.12.12.min.js" />
 
+/**
+File Name: game.js
+Author: Blake Murdock
+Website Name: Slot Machine Javascript and game logic
+Purpose: This file contains all of the javascript and jQuery functions that are used by the 
+slot machine application. 
+*/
+
 var stage;
 var game;
 var slotMachineImage;
@@ -144,27 +152,6 @@ function checkJackPot() {
         alert("You Won the $" + jackpot + " Jackpot!!");
         playerMoney += jackpot;
         winnings += jackpot;
-
-        /**black_box = new createjs.Bitmap("img/black_box.png");
-        black_box.x = 79;
-        black_box.y = 333;
-        game.addChild(black_box);
-
-        winningsText = new createjs.Text(winnings, "13px Arial", "White");
-        winningsText.x = 105;
-        winningsText.y = 343;
-        game.addChild(winningsText);
-
-        black_box = new createjs.Bitmap("img/black_box.png");
-        black_box.x = 442;
-        black_box.y = 336;
-        game.addChild(black_box);
-
-        playerMoneyText = new createjs.Text(playerMoney, "13px Arial", "White");
-        playerMoneyText.x = 462;
-        playerMoneyText.y = 343;
-        game.addChild(playerMoneyText);
-        */
 
         jackpot = 1000;
     }
@@ -359,6 +346,7 @@ function gameStart () {
     
 };
 
+// Utility function to update reeks and all text on slot machine canvas
 function updateStats() {
     game.removeChild(jackpotText);
 
