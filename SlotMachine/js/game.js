@@ -64,7 +64,9 @@ function loadQueue() {
         { id: "blankImage", src: "img/blank.png" },
         { id: "spinHoverButtonImage", src: "img/Spin-Blue.png" },
         { id: "spinButtonImage", src: "img/Spin.png" },
-        { id: "spin-reel", src: "img/spin-reel.png" }
+        { id: "spin-reel", src: "img/spin-reel.png" },
+        { id: "coin_sound", src: "audio/coin.wav" },
+        { id: "jackpot_sound", src: "audio/jackpot.wav" }
     ]);
 }
 

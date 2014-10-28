@@ -65,6 +65,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="audio\coin.wav" />
+    <Content Include="audio\jackpot.wav" />
     <Content Include="css\main.css" />
     <Content Include="css\reset.css" />
     <Content Include="img\7-2.png" />
