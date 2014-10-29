@@ -16,6 +16,8 @@ var queue;
 var slotMachineImage;
 var spinButton;
 var spinButtonHover;
+var resetButton;
+var resetButtonHover;
 var winText;
 var reel1;
 var reel2;
@@ -50,6 +52,7 @@ var blanks = 0;
 function loadQueue() {
     queue = new createjs.LoadQueue();
     queue.installPlugin(createjs.Sound);
+    createjs.Sound.alternateExtensions = ["wav"];
     queue.addEventListener("complete", init);
     
     queue.loadManifest([
@@ -65,8 +68,10 @@ function loadQueue() {
         { id: "spinHoverButtonImage", src: "img/Spin-Blue.png" },
         { id: "spinButtonImage", src: "img/Spin.png" },
         { id: "spin-reel", src: "img/spin-reel.png" },
-        { id: "coin_sound", src: "audio/coin.wav" },
-        { id: "jackpot_sound", src: "audio/jackpot.wav" }
+        { id: "reset_button_red", src: "img/Reset-Button-Red-98x78-2.png" },
+        { id: "reset_button_blue", src: "img/Reset-Button-Blue-98x78-2.png" }
+        //{ id: "coin_sound", src: "audio/coin.wav" },
+        //{ id: "jackpot_sound", src: "audio/jackpot.wav" }
     ]);
 }
 
@@ -106,47 +111,8 @@ function resetAll() {
     lossNumber = 0;
     winRatio = 0;
 
-    game.removeChild(winningsText);
-
-    winningsText = new createjs.Text(winnings, "13px Arial", "White");
-    winningsText.x = 105;
-    winningsText.y = 343;
-    game.addChild(winningsText);
-
-    game.removeChild(playerMoneyText);
-
-    playerMoneyText = new createjs.Text(playerMoney, "13px Arial", "White");
-    playerMoneyText.x = 462;
-    playerMoneyText.y = 343;
-    game.addChild(playerMoneyText);
-
-    game.removeChild(turnText);
-
-    turnText = new createjs.Text(turn, "13px Arial", "White");
-    turnText.x = 73;
-    turnText.y = 175;
-    game.addChild(turnText);
-
-    game.removeChild(winNumberText);
-
-    winNumberText = new createjs.Text(winNumber, "13px Arial", "White");
-    winNumberText.x = 493;
-    winNumberText.y = 175;
-    game.addChild(winNumberText);
-
-    game.removeChild(lossNumberText);
-
-    lossNumberText = new createjs.Text(lossNumber, "13px Arial", "White");
-    lossNumberText.x = 493;
-    lossNumberText.y = 229;
-    game.addChild(lossNumberText);
-
-    game.removeChild(winRatioText);
-
-    winRatioText = new createjs.Text(winRatio + "%", "13px Arial", "White");
-    winRatioText.x = 480;
-    winRatioText.y = 280;
-    game.addChild(winRatioText);
+    updateStats();
+  
 }
 
 
@@ -440,6 +406,30 @@ function drawSlotMachine() {
     })
     game.addChild(spinButton);
     game.addChild(spinButtonHover);
+
+    resetButton = new createjs.Bitmap(queue.getResult('reset_button_red'));
+    resetButtonHover = new createjs.Bitmap(queue.getResult('reset_button_blue'));
+    resetButton.x = 332;
+    resetButton.y = 390;
+    resetButtonHover.x = 332;
+    resetButtonHover.y = 390;
+    resetButtonHover.visible = false;
+    resetButton.addEventListener("mouseover", function (event) {
+        resetButton.visible = false;
+        resetButtonHover.visible = true;
+    });
+    resetButtonHover.addEventListener("mouseout", function (event) {
+        resetButtonHover.visible = false;
+        resetButton.visible = true;
+    });
+    resetButtonHover.addEventListener("click", function (event) {
+        if (confirm("Are you sure you would like to reset the game?")) {
+            resetAll();
+            showPlayerStats();
+        };
+    });
+    game.addChild(resetButton);
+    game.addChild(resetButtonHover);
 
     reel1 = new createjs.Bitmap(queue.getResult('spin-reel'));
     reel1.x = 130;

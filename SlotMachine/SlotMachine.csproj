@@ -65,8 +65,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="audio\coin.wav" />
-    <Content Include="audio\jackpot.wav" />
     <Content Include="css\main.css" />
     <Content Include="css\reset.css" />
     <Content Include="img\7-2.png" />
@@ -78,6 +76,8 @@
     <Content Include="img\cherries2.png" />
     <Content Include="img\grapes2.png" />
     <Content Include="img\oranges2.png" />
+    <Content Include="img\Reset-Button-Blue-98x78-2.png" />
+    <Content Include="img\Reset-Button-Red-98x78-2.png" />
     <Content Include="img\shortcut-logo.ico" />
     <Content Include="img\Spin-Blue.png" />
     <Content Include="img\spin-reel.png" />
@@ -91,7 +91,9 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="audio\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
