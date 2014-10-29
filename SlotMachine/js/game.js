@@ -18,6 +18,7 @@ var spinButton;
 var spinButtonHover;
 var resetButton;
 var resetButtonHover;
+var exitButton;
 var winText;
 var reel1;
 var reel2;
@@ -69,7 +70,8 @@ function loadQueue() {
         { id: "spinButtonImage", src: "img/Spin.png" },
         { id: "spin-reel", src: "img/spin-reel.png" },
         { id: "reset_button_red", src: "img/Reset-Button-Red-98x78-2.png" },
-        { id: "reset_button_blue", src: "img/Reset-Button-Blue-98x78-2.png" }
+        { id: "reset_button_blue", src: "img/Reset-Button-Blue-98x78-2.png" },
+        { id: "exit", src: "img/exit-2.png" }
         //{ id: "coin_sound", src: "audio/coin.wav" },
         //{ id: "jackpot_sound", src: "audio/jackpot.wav" }
     ]);
@@ -361,6 +363,7 @@ function updateStats() {
 
     game.removeChild(winRatioText);
 
+    winRatio = winNumber / turn;
     winRatioText = new createjs.Text((winRatio * 100).toFixed(2) + "%", "13px Arial", "White");
     winRatioText.x = 479;
     winRatioText.y = 280;
@@ -430,6 +433,16 @@ function drawSlotMachine() {
     });
     game.addChild(resetButton);
     game.addChild(resetButtonHover);
+
+    exitButton = new createjs.Bitmap(queue.getResult('exit'));
+    exitButton.x = 574;
+    exitButton.y = 10;
+    exitButton.addEventListener("click", function (event) {
+        if (confirm("Are you sure you would like to leave the game?")) {
+            window.location.replace("http://www.blakemurdock.ca");
+        };
+    });
+    game.addChild(exitButton);
 
     reel1 = new createjs.Bitmap(queue.getResult('spin-reel'));
     reel1.x = 130;
