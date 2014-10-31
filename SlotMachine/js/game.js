@@ -72,7 +72,7 @@ var blanks = 0;
 function loadQueue() {
     queue = new createjs.LoadQueue();
     queue.installPlugin(createjs.Sound);
-    createjs.Sound.alternateExtensions = ["wav"];
+    createjs.Sound.alternateExtensions = ["mp3"];
     queue.addEventListener("complete", init);
     
     queue.loadManifest([
@@ -106,9 +106,9 @@ function loadQueue() {
         { id: "bet100BlueImage", src: "img/bet100-blue.png" },
         { id: "bet200BlueImage", src: "img/bet200-blue.png" },
         { id: "bet500BlueImage", src: "img/bet500-blue.png" },
-        { id: "bet1000BlueImage", src: "img/bet1000-blue.png" }
-        //{ id: "coin_sound", src: "audio/coin.wav" },
-        //{ id: "jackpot_sound", src: "audio/jackpot.wav" }
+        { id: "bet1000BlueImage", src: "img/bet1000-blue.png" }, 
+        { id: "coin_sound", src: "audio/coin.mp3" },
+        { id: "jackpot_sound", src: "audio/jackpot.mp3" }
     ]);
 }
 
@@ -193,6 +193,7 @@ function checkJackPot() {
     var jackPotTry = Math.floor(Math.random() * 51 + 1);
     var jackPotWin = Math.floor(Math.random() * 51 + 1);
     if (jackPotTry == jackPotWin) {
+        createjs.Sound.play('jackpot_sound');
         alert("You Won the $" + jackpot + " Jackpot!!");
         playerMoney += jackpot;
         winnings += jackpot;
@@ -698,6 +699,7 @@ function drawSlotMachine() {
     });
     spinButtonHover.addEventListener("click", function (event) {
         if (betPlaced) {
+            createjs.Sound.play('coin_sound');
             gameStart();
         } else {
             alert("Please place a bet before you click spin!");
