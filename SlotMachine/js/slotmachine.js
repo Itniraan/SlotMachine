@@ -31,6 +31,7 @@ var winNumberText;
 var lossNumberText;
 var winRatioText;
 var turnText;
+var betAmountText;
 
 // Bet Buttons
 var betPlaced = false;
@@ -462,6 +463,12 @@ function updateStats() {
         game.addChild(winRatioText);
     };
 
+    game.removeChild(betAmountText);
+    betAmountText = new createjs.Text(playerBet, "13px Arial", "White");
+    betAmountText.x = 80;
+    betAmountText.y = 270;
+    game.addChild(betAmountText);
+
     stage.addChild(game);
 
 };
@@ -483,6 +490,7 @@ function placeBetButtons() {
             bet5Red.visible = false;
             bet5Blue.visible = true;
             playerBet = 5;
+            updateStats();
         };
     });
     bet5Blue.addEventListener("click", function (event) {
@@ -490,6 +498,7 @@ function placeBetButtons() {
         bet5Red.visible = true;
         bet5Blue.visible = false;
         playerBet = 0;
+        updateStats();
     });
 
     bet10Red = new createjs.Bitmap(queue.getResult('bet10RedImage'));
@@ -507,6 +516,7 @@ function placeBetButtons() {
             bet10Red.visible = false;
             bet10Blue.visible = true;
             playerBet = 10;
+            updateStats();
         };
     });
     bet10Blue.addEventListener("click", function (event) {
@@ -514,6 +524,7 @@ function placeBetButtons() {
         bet10Blue.visible = false;
         bet10Red.visible = true;
         playerBet = 0;
+        updateStats();
     });
 
     bet20Red = new createjs.Bitmap(queue.getResult('bet20RedImage'));
@@ -531,6 +542,7 @@ function placeBetButtons() {
             bet20Red.visible = false;
             bet20Blue.visible = true;
             playerBet = 20;
+            updateStats();
         };
     });
     bet20Blue.addEventListener("click", function (event) {
@@ -538,6 +550,7 @@ function placeBetButtons() {
         bet20Blue.visible = false;
         bet20Red.visible = true;
         playerBet = 0;
+        updateStats();
     });
 
     bet50Red = new createjs.Bitmap(queue.getResult('bet50RedImage'));
@@ -555,6 +568,7 @@ function placeBetButtons() {
             bet50Red.visible = false;
             bet50Blue.visible = true;
             playerBet = 50;
+            updateStats();
         };
     });
     bet50Blue.addEventListener("click", function (event) {
@@ -562,6 +576,7 @@ function placeBetButtons() {
         bet50Blue.visible = false;
         bet50Red.visible = true;
         playerBet = 0;
+        updateStats();
     });
 
     bet100Red = new createjs.Bitmap(queue.getResult('bet100RedImage'));
@@ -579,6 +594,7 @@ function placeBetButtons() {
             bet100Red.visible = false;
             bet100Blue.visible = true;
             playerBet = 100;
+            updateStats();
         };
     });
     bet100Blue.addEventListener("click", function (event) {
@@ -586,6 +602,7 @@ function placeBetButtons() {
         bet100Blue.visible = false;
         bet100Red.visible = true;
         playerBet = 0;
+        updateStats();
     });
 
     bet200Red = new createjs.Bitmap(queue.getResult('bet200RedImage'));
@@ -603,6 +620,7 @@ function placeBetButtons() {
             bet200Red.visible = false;
             bet200Blue.visible = true;
             playerBet = 200;
+            updateStats();
         };
     });
     bet200Blue.addEventListener("click", function (event) {
@@ -610,6 +628,7 @@ function placeBetButtons() {
         bet200Blue.visible = false;
         bet200Red.visible = true;
         playerBet = 0;
+        updateStats();
     });
 
     bet500Red = new createjs.Bitmap(queue.getResult('bet500RedImage'));
@@ -627,6 +646,7 @@ function placeBetButtons() {
             bet500Red.visible = false;
             bet500Blue.visible = true;
             playerBet = 500;
+            updateStats();
         };
     });
     bet500Blue.addEventListener("click", function (event) {
@@ -634,6 +654,7 @@ function placeBetButtons() {
         bet500Blue.visible = false;
         bet500Red.visible = true;
         playerBet = 0;
+        updateStats();
     });
 
     bet1000Red = new createjs.Bitmap(queue.getResult('bet1000RedImage'));
@@ -651,6 +672,7 @@ function placeBetButtons() {
             bet1000Red.visible = false;
             bet1000Blue.visible = true;
             playerBet = 1000;
+            updateStats();
         };
     });
     bet1000Blue.addEventListener("click", function (event) {
@@ -658,6 +680,7 @@ function placeBetButtons() {
         bet1000Blue.visible = false;
         bet1000Red.visible = true;
         playerBet = 0;
+        updateStats();
     });
 };
 
@@ -804,6 +827,11 @@ function drawSlotMachine() {
     winRatioText.x = 487;
     winRatioText.y = 280;
     game.addChild(winRatioText);
+
+    betAmountText = new createjs.Text(playerBet, "13px Arial", "White");
+    betAmountText.x = 80;
+    betAmountText.y = 270;
+    game.addChild(betAmountText);
 
 
 
