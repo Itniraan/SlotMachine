@@ -5,7 +5,7 @@
 /**
 File Name: game.js
 Author: Blake Murdock
-Website Name: Slot Machine Javascript and game logic
+Website Name: Slot Machine
 Purpose: This file contains all of the javascript and jQuery functions that are used by the 
 slot machine application. 
 */
@@ -23,6 +23,7 @@ var winText;
 var reel1;
 var reel2;
 var reel3;
+var bet5Red;
 var jackpotText;
 var winningsText;
 var playerMoneyText;
@@ -30,6 +31,7 @@ var winNumberText;
 var lossNumberText;
 var winRatioText;
 var turnText;
+var betPlaced = false;
 
 var playerMoney = 1000;
 var winnings = 0;
@@ -71,7 +73,23 @@ function loadQueue() {
         { id: "spin-reel", src: "img/spin-reel.png" },
         { id: "reset_button_red", src: "img/Reset-Button-Red-98x78-2.png" },
         { id: "reset_button_blue", src: "img/Reset-Button-Blue-98x78-2.png" },
-        { id: "exit", src: "img/exit-2.png" }
+        { id: "exit", src: "img/exit-2.png" },
+        { id: "bet5RedImage", src: "img/bet5-red.png" },
+        { id: "bet10RedImage", src: "img/bet10-red.png" },
+        { id: "bet20RedImage", src: "img/bet20-red.png" },
+        { id: "bet50RedImage", src: "img/bet50-red.png" },
+        { id: "bet100RedImage", src: "img/bet100-red.png" },
+        { id: "bet200RedImage", src: "img/bet200-red.png" },
+        { id: "bet500RedImage", src: "img/bet500-red.png" },
+        { id: "bet1000RedImage", src: "img/bet1000-red.png" },
+        { id: "bet5BlueImage", src: "img/bet5-blue.png" },
+        { id: "bet10BlueImage", src: "img/bet10-blue.png" },
+        { id: "bet20BlueImage", src: "img/bet20-blue.png" },
+        { id: "bet50BlueImage", src: "img/bet50-blue.png" },
+        { id: "bet100BlueImage", src: "img/bet100-blue.png" },
+        { id: "bet200BlueImage", src: "img/bet200-blue.png" },
+        { id: "bet500BlueImage", src: "img/bet500-blue.png" },
+        { id: "bet1000BlueImage", src: "img/bet1000-blue.png" }
         //{ id: "coin_sound", src: "audio/coin.wav" },
         //{ id: "jackpot_sound", src: "audio/jackpot.wav" }
     ]);
@@ -280,7 +298,8 @@ function determineWinnings()
 
 /* When the player clicks the spin button the game kicks off */
 function gameStart () {
-    playerBet = $("div#betEntry>input").val();
+    //playerBet = $("div#betEntry>input").val();
+    console.log("You bet " + playerBet);
 
     if (playerMoney == 0)
     {
@@ -316,6 +335,7 @@ function gameStart () {
         game.addChild(reel3);
         determineWinnings();
         turn++;
+        updateStats();
         showPlayerStats();
     }
     else {
@@ -347,6 +367,13 @@ function updateStats() {
     playerMoneyText.y = 343;
     game.addChild(playerMoneyText);
 
+    game.removeChild(winNumberText);
+
+    winNumberText = new createjs.Text(winNumber, "13px Arial", "White");
+    winNumberText.x = 493;
+    winNumberText.y = 175;
+    game.addChild(winNumberText);
+
     game.removeChild(lossNumberText);
 
     lossNumberText = new createjs.Text(lossNumber, "13px Arial", "White");
@@ -363,11 +390,21 @@ function updateStats() {
 
     game.removeChild(winRatioText);
 
-    winRatio = winNumber / turn;
-    winRatioText = new createjs.Text((winRatio * 100).toFixed(2) + "%", "13px Arial", "White");
-    winRatioText.x = 479;
-    winRatioText.y = 280;
-    game.addChild(winRatioText);
+    if (turn == 0 || winRatio == 0) {
+        winRatioText = new createjs.Text("0.00%", "13px Arial", "White");
+        winRatioText.x = 479;
+        winRatioText.y = 280;
+        game.addChild(winRatioText);
+    }
+    else {
+        winRatio = winNumber / turn;
+        winRatioText = new createjs.Text((winRatio * 100).toFixed(2) + "%", "13px Arial", "White");
+        winRatioText.x = 479;
+        winRatioText.y = 280;
+        game.addChild(winRatioText);
+    };
+
+    stage.addChild(game);
 
 };
 
@@ -384,6 +421,11 @@ function handleTick() {
     stage.update();
 };
 
+function handleLoad() {
+
+};
+
+
 function drawSlotMachine() {
     game = new createjs.Container();
     slotMachineImage = new createjs.Bitmap(queue.getResult('slotMachineImage'));
@@ -399,13 +441,22 @@ function drawSlotMachine() {
     spinButton.addEventListener("mouseover", function (event) {
         spinButton.visible = false;
         spinButtonHover.visible = true;
+        if (!betPlaced) {
+            spinButtonHover.alpha = 0.5;
+        } else {
+            spinButtonHover.alpha = 1.0;
+        };
     });
     spinButtonHover.addEventListener("mouseout", function (event) {
         spinButton.visible = true;
         spinButtonHover.visible = false;
     });
     spinButtonHover.addEventListener("click", function (event) {
-        gameStart();
+        if (betPlaced) {
+            gameStart();
+        } else {
+            alert("Please place a bet before you click spin!");
+        };
     })
     game.addChild(spinButton);
     game.addChild(spinButtonHover);
@@ -456,6 +507,18 @@ function drawSlotMachine() {
     reel3.x = 355;
     reel3.y = 165;
     game.addChild(reel3);
+
+    bet5Red = new createjs.Bitmap(queue.getResult('bet5RedImage'));
+    bet5Red.x = 59;
+    bet5Red.y = 395;
+    game.addChild(bet5Red);
+
+    bet5Red.addEventListener("click", function (event) {
+        betPlaced = true;
+        bet5Red.visible = false;
+        //bet5Blue.visible = true;
+        playerBet = 5;
+    });
 
     jackpotText = new createjs.Text(jackpot, "13px Arial", "White");
     jackpotText.x = 270;
