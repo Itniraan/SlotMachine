@@ -10,6 +10,7 @@ Purpose: This file contains all of the javascript and jQuery functions that are 
 slot machine application. 
 */
 
+// CreateJS variables for bitmaps, text, etx
 var stage;
 var game;
 var queue;
@@ -50,6 +51,7 @@ var bet500Blue;
 var bet1000Red;
 var bet1000Blue;
 
+// Value variables
 var playerMoney = 1000;
 var winnings = 0;
 var jackpot = 5000;
@@ -69,8 +71,10 @@ var bells = 0;
 var sevens = 0;
 var blanks = 0;
 
+// Preloading function
 function loadQueue() {
     queue = new createjs.LoadQueue();
+    // Install sound plugin
     queue.installPlugin(createjs.Sound);
     createjs.Sound.alternateExtensions = ["mp3"];
     queue.addEventListener("complete", init);
@@ -350,8 +354,7 @@ function determineWinnings()
 
 /* When the player clicks the spin button the game kicks off */
 function gameStart () {
-    //playerBet = $("div#betEntry>input").val();
-    console.log("You bet " + playerBet);
+    //console.log("You bet " + playerBet);
 
     if (playerMoney == 0)
     {
@@ -460,6 +463,7 @@ function updateStats() {
 
 };
 
+// Places and sets values for bet buttons
 function placeBetButtons() {
     bet5Red = new createjs.Bitmap(queue.getResult('bet5RedImage'));
     bet5Red.x = 59;
@@ -654,6 +658,7 @@ function placeBetButtons() {
     });
 };
 
+// Initalization function, this sets up the stage and ticker
 function init() {
     //alert("Game Loaded");
     stage = new createjs.Stage(document.getElementById("mainCanvas"));
@@ -663,6 +668,7 @@ function init() {
     drawSlotMachine();
 };
 
+// This function handles the updating of the stage
 function handleTick() {
     if (!betPlaced && spinButtonHover.visible) {
         $('#mainCanvas').css('cursor', 'not-allowed');
@@ -676,7 +682,7 @@ function handleLoad() {
 
 };
 
-
+// This function draws the base slot machine to the canvas
 function drawSlotMachine() {
     game = new createjs.Container();
     slotMachineImage = new createjs.Bitmap(queue.getResult('slotMachineImage'));

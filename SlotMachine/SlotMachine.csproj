@@ -102,7 +102,7 @@
     <Content Include="img\Spin-Blue.png" />
     <Content Include="img\spin-reel.png" />
     <Content Include="img\Spin.png" />
-    <Content Include="index.html" />
+    <Content Include="slotmachine.html" />
     <Content Include="js\createjs-2013.12.12.min.js" />
     <Content Include="js\jquery.js" />
     <Content Include="js\game.js" />
