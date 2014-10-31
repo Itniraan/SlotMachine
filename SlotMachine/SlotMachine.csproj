@@ -67,7 +67,7 @@
   <ItemGroup>
     <Content Include="audio\coin.mp3" />
     <Content Include="audio\jackpot.mp3" />
-    <Content Include="css\main.css" />
+    <Content Include="css\slotmachine.css" />
     <Content Include="css\reset.css" />
     <Content Include="img\7-2.png" />
     <Content Include="img\A_Vector_Art_Slot_Machine_Revised.png" />
@@ -105,7 +105,7 @@
     <Content Include="slotmachine.html" />
     <Content Include="js\createjs-2013.12.12.min.js" />
     <Content Include="js\jquery.js" />
-    <Content Include="js\game.js" />
+    <Content Include="js\slotmachine.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

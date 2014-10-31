@@ -3,7 +3,7 @@
 /// <reference path="createjs-2013.12.12.min.js" />
 
 /**
-File Name: game.js
+File Name: slotmachine.js
 Author: Blake Murdock
 Website Name: Slot Machine
 Purpose: This file contains all of the javascript and jQuery functions that are used by the 
@@ -151,6 +151,8 @@ function resetAll() {
     winNumber = 0;
     lossNumber = 0;
     winRatio = 0;
+
+    // Reset Bet Buttons
     betPlaced = false;
     bet5Red.visible = true;
     bet5Blue.visible = false;
@@ -169,6 +171,7 @@ function resetAll() {
     bet1000Red.visible = true;
     bet1000Blue.visible = false;
 
+    // Reset Reels
     game.removeChild(reel1);
     game.removeChild(reel2);
     game.removeChild(reel3);
@@ -185,7 +188,7 @@ function resetAll() {
     reel3.y = 165;
     game.addChild(reel3);
 
-
+    // Update Text
     updateStats();
   
 }
@@ -678,9 +681,6 @@ function handleTick() {
     stage.update();
 };
 
-function handleLoad() {
-
-};
 
 // This function draws the base slot machine to the canvas
 function drawSlotMachine() {
