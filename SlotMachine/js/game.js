@@ -23,7 +23,6 @@ var winText;
 var reel1;
 var reel2;
 var reel3;
-var bet5Red;
 var jackpotText;
 var winningsText;
 var playerMoneyText;
@@ -31,7 +30,25 @@ var winNumberText;
 var lossNumberText;
 var winRatioText;
 var turnText;
+
+// Bet Buttons
 var betPlaced = false;
+var bet5Red;
+var bet5Blue;
+var bet10Red;
+var bet10Blue;
+var bet20Red;
+var bet20Blue;
+var bet50Red;
+var bet50Blue;
+var bet100Red;
+var bet100Blue;
+var bet200Red;
+var bet200Blue;
+var bet500Red;
+var bet500Blue;
+var bet1000Red;
+var bet1000Blue;
 
 var playerMoney = 1000;
 var winnings = 0;
@@ -130,6 +147,40 @@ function resetAll() {
     winNumber = 0;
     lossNumber = 0;
     winRatio = 0;
+    betPlaced = false;
+    bet5Red.visible = true;
+    bet5Blue.visible = false;
+    bet10Red.visible = true;
+    bet10Blue.visible = false;
+    bet20Red.visible = true;
+    bet20Blue.visible = false;
+    bet50Red.visible = true;
+    bet50Blue.visible = false;
+    bet100Red.visible = true;
+    bet100Blue.visible = false;
+    bet200Red.visible = true;
+    bet200Blue.visible = false;
+    bet500Red.visible = true;
+    bet500Blue.visible = false;
+    bet1000Red.visible = true;
+    bet1000Blue.visible = false;
+
+    game.removeChild(reel1);
+    game.removeChild(reel2);
+    game.removeChild(reel3);
+    reel1 = new createjs.Bitmap(queue.getResult('spin-reel'));
+    reel1.x = 130;
+    reel1.y = 165;
+    game.addChild(reel1);
+    reel2 = new createjs.Bitmap(queue.getResult('spin-reel'));
+    reel2.x = 243;
+    reel2.y = 165;
+    game.addChild(reel2);
+    reel3 = new createjs.Bitmap(queue.getResult('spin-reel'));
+    reel3.x = 355;
+    reel3.y = 165;
+    game.addChild(reel3);
+
 
     updateStats();
   
@@ -408,6 +459,200 @@ function updateStats() {
 
 };
 
+function placeBetButtons() {
+    bet5Red = new createjs.Bitmap(queue.getResult('bet5RedImage'));
+    bet5Red.x = 59;
+    bet5Red.y = 395;
+    game.addChild(bet5Red);
+    bet5Blue = new createjs.Bitmap(queue.getResult('bet5BlueImage'));
+    bet5Blue.x = 59;
+    bet5Blue.y = 395;
+    game.addChild(bet5Blue);
+    bet5Blue.visible = false;
+    bet5Red.addEventListener("click", function (event) {
+        if (!betPlaced) {
+            betPlaced = true;
+            bet5Red.visible = false;
+            bet5Blue.visible = true;
+            playerBet = 5;
+        };
+    });
+    bet5Blue.addEventListener("click", function (event) {
+        betPlaced = false;
+        bet5Red.visible = true;
+        bet5Blue.visible = false;
+        playerBet = 0;
+    });
+
+    bet10Red = new createjs.Bitmap(queue.getResult('bet10RedImage'));
+    bet10Red.x = 129;
+    bet10Red.y = 395;
+    game.addChild(bet10Red);
+    bet10Blue = new createjs.Bitmap(queue.getResult('bet10BlueImage'));
+    bet10Blue.x = 129;
+    bet10Blue.y = 395;
+    game.addChild(bet10Blue);
+    bet10Blue.visible = false;
+    bet10Red.addEventListener("click", function (event) {
+        if (!betPlaced) {
+            betPlaced = true;
+            bet10Red.visible = false;
+            bet10Blue.visible = true;
+            playerBet = 10;
+        };
+    });
+    bet10Blue.addEventListener("click", function (event) {
+        betPlaced = false;
+        bet10Blue.visible = false;
+        bet10Red.visible = true;
+        playerBet = 0;
+    });
+
+    bet20Red = new createjs.Bitmap(queue.getResult('bet20RedImage'));
+    bet20Red.x = 199;
+    bet20Red.y = 395;
+    game.addChild(bet20Red);
+    bet20Blue = new createjs.Bitmap(queue.getResult('bet20BlueImage'));
+    bet20Blue.x = 199;
+    bet20Blue.y = 395;
+    game.addChild(bet20Blue);
+    bet20Blue.visible = false;
+    bet20Red.addEventListener("click", function (event) {
+        if (!betPlaced) {
+            betPlaced = true;
+            bet20Red.visible = false;
+            bet20Blue.visible = true;
+            playerBet = 20;
+        };
+    });
+    bet20Blue.addEventListener("click", function (event) {
+        betPlaced = false;
+        bet20Blue.visible = false;
+        bet20Red.visible = true;
+        playerBet = 0;
+    });
+
+    bet50Red = new createjs.Bitmap(queue.getResult('bet50RedImage'));
+    bet50Red.x = 269;
+    bet50Red.y = 395;
+    game.addChild(bet50Red);
+    bet50Blue = new createjs.Bitmap(queue.getResult('bet50BlueImage'));
+    bet50Blue.x = 269;
+    bet50Blue.y = 395;
+    game.addChild(bet50Blue);
+    bet50Blue.visible = false;
+    bet50Red.addEventListener("click", function (event) {
+        if (!betPlaced) {
+            betPlaced = true;
+            bet50Red.visible = false;
+            bet50Blue.visible = true;
+            playerBet = 50;
+        };
+    });
+    bet50Blue.addEventListener("click", function (event) {
+        betPlaced = false;
+        bet50Blue.visible = false;
+        bet50Red.visible = true;
+        playerBet = 0;
+    });
+
+    bet100Red = new createjs.Bitmap(queue.getResult('bet100RedImage'));
+    bet100Red.x = 59;
+    bet100Red.y = 435;
+    game.addChild(bet100Red);
+    bet100Blue = new createjs.Bitmap(queue.getResult('bet100BlueImage'));
+    bet100Blue.x = 59;
+    bet100Blue.y = 435;
+    game.addChild(bet100Blue);
+    bet100Blue.visible = false;
+    bet100Red.addEventListener("click", function (event) {
+        if (!betPlaced) {
+            betPlaced = true;
+            bet100Red.visible = false;
+            bet100Blue.visible = true;
+            playerBet = 100;
+        };
+    });
+    bet100Blue.addEventListener("click", function (event) {
+        betPlaced = false;
+        bet100Blue.visible = false;
+        bet100Red.visible = true;
+        playerBet = 0;
+    });
+
+    bet200Red = new createjs.Bitmap(queue.getResult('bet200RedImage'));
+    bet200Red.x = 129;
+    bet200Red.y = 435;
+    game.addChild(bet200Red);
+    bet200Blue = new createjs.Bitmap(queue.getResult('bet200BlueImage'));
+    bet200Blue.x = 129;
+    bet200Blue.y = 435;
+    game.addChild(bet200Blue);
+    bet200Blue.visible = false;
+    bet200Red.addEventListener("click", function (event) {
+        if (!betPlaced) {
+            betPlaced = true;
+            bet200Red.visible = false;
+            bet200Blue.visible = true;
+            playerBet = 200;
+        };
+    });
+    bet200Blue.addEventListener("click", function (event) {
+        betPlaced = false;
+        bet200Blue.visible = false;
+        bet200Red.visible = true;
+        playerBet = 0;
+    });
+
+    bet500Red = new createjs.Bitmap(queue.getResult('bet500RedImage'));
+    bet500Red.x = 199;
+    bet500Red.y = 435;
+    game.addChild(bet500Red);
+    bet500Blue = new createjs.Bitmap(queue.getResult('bet500BlueImage'));
+    bet500Blue.x = 199;
+    bet500Blue.y = 435;
+    game.addChild(bet500Blue);
+    bet500Blue.visible = false;
+    bet500Red.addEventListener("click", function (event) {
+        if (!betPlaced) {
+            betPlaced = true;
+            bet500Red.visible = false;
+            bet500Blue.visible = true;
+            playerBet = 500;
+        };
+    });
+    bet500Blue.addEventListener("click", function (event) {
+        betPlaced = false;
+        bet500Blue.visible = false;
+        bet500Red.visible = true;
+        playerBet = 0;
+    });
+
+    bet1000Red = new createjs.Bitmap(queue.getResult('bet1000RedImage'));
+    bet1000Red.x = 269;
+    bet1000Red.y = 435;
+    game.addChild(bet1000Red);
+    bet1000Blue = new createjs.Bitmap(queue.getResult('bet1000BlueImage'));
+    bet1000Blue.x = 269;
+    bet1000Blue.y = 435;
+    game.addChild(bet1000Blue);
+    bet1000Blue.visible = false;
+    bet1000Red.addEventListener("click", function (event) {
+        if (!betPlaced) {
+            betPlaced = true;
+            bet1000Red.visible = false;
+            bet1000Blue.visible = true;
+            playerBet = 1000;
+        };
+    });
+    bet1000Blue.addEventListener("click", function (event) {
+        betPlaced = false;
+        bet1000Blue.visible = false;
+        bet1000Red.visible = true;
+        playerBet = 0;
+    });
+};
+
 function init() {
     //alert("Game Loaded");
     stage = new createjs.Stage(document.getElementById("mainCanvas"));
@@ -508,17 +753,7 @@ function drawSlotMachine() {
     reel3.y = 165;
     game.addChild(reel3);
 
-    bet5Red = new createjs.Bitmap(queue.getResult('bet5RedImage'));
-    bet5Red.x = 59;
-    bet5Red.y = 395;
-    game.addChild(bet5Red);
-
-    bet5Red.addEventListener("click", function (event) {
-        betPlaced = true;
-        bet5Red.visible = false;
-        //bet5Blue.visible = true;
-        playerBet = 5;
-    });
+    placeBetButtons();
 
     jackpotText = new createjs.Text(jackpot, "13px Arial", "White");
     jackpotText.x = 270;
