@@ -1,0 +1,21 @@
+﻿/*
+    File Name: slotmachine.css
+    Author: Blake Murdock
+    Website Name: Slot Machine
+    Purpose: This file contains all of the CSS styles for the slot machine
+*/
+
+body {
+    background: url("../img/casino_card_background.jpg");
+}
+
+#mainCanvas {
+    margin-left: 25%;
+    margin-top: 5%;
+}
+
+small {
+    margin-left: 25%;
+    font-size: small;
+    color: white;
+}
