@@ -91,9 +91,9 @@
     <Content Include="img\bet500-blue.png" />
     <Content Include="img\bet500-red.png" />
     <Content Include="img\blank.png" />
+    <Content Include="img\casino_card_background.jpg" />
     <Content Include="img\cherries2.png" />
     <Content Include="img\exit-2.png" />
-    <Content Include="img\gg_ignored.png" />
     <Content Include="img\grapes2.png" />
     <Content Include="img\oranges2.png" />
     <Content Include="img\Reset-Button-Blue-98x78-2.png" />

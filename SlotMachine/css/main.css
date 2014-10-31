@@ -1,9 +1,8 @@
-﻿ul#playerStats {
-    list-style-type: none;
-    padding: 0;
-    margin: 5px;
+﻿body {
+    background: url("../img/casino_card_background.jpg");
 }
 
-div#main {
-    float: right;
+#mainCanvas {
+    margin-left: 25%;
+    margin-top: 5%;
 }

@@ -664,6 +664,11 @@ function init() {
 };
 
 function handleTick() {
+    if (!betPlaced && spinButtonHover.visible) {
+        $('#mainCanvas').css('cursor', 'not-allowed');
+    } else {
+        $('#mainCanvas').css('cursor', 'default');
+    };
     stage.update();
 };
 
@@ -689,8 +694,10 @@ function drawSlotMachine() {
         spinButtonHover.visible = true;
         if (!betPlaced) {
             spinButtonHover.alpha = 0.5;
+            $('#mainCanvas').css('cursor', 'not-allowed');
         } else {
             spinButtonHover.alpha = 1.0;
+            $('#mainCanvas').css('cursor', 'default');
         };
     });
     spinButtonHover.addEventListener("mouseout", function (event) {
